@@ -2265,52 +2265,6 @@ var Index = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/List.js":
-/*!*****************************************!*\
-  !*** ./resources/js/components/List.js ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-var List = function List(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-    id: props.index,
-    className: props.index === props.count ? 'active menu-item' : 'menu-item',
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-      href: props.post.url,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "list_item_container",
-        title: props.post.title,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "image",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: props.post.image
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "label",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
-            children: props.post.title
-          })
-        })]
-      })
-    })
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (List);
-
-/***/ }),
-
 /***/ "./resources/js/components/ReactSearch.js":
 /*!************************************************!*\
   !*** ./resources/js/components/ReactSearch.js ***!
@@ -2324,8 +2278,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _List__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./List */ "./resources/js/components/List.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2353,194 +2306,40 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var ReactSearch = /*#__PURE__*/function (_React$Component) {
   _inherits(ReactSearch, _React$Component);
 
   var _super = _createSuper(ReactSearch);
 
-  function ReactSearch(props) {
-    var _this;
-
+  function ReactSearch() {
     _classCallCheck(this, ReactSearch);
 
-    _this = _super.call(this, props);
-    _this.state = {
-      posts: [],
-      search: '',
-      count: 0,
-      width: 0
-    };
-    _this.handleSearch = _this.handleSearch.bind(_assertThisInitialized(_this)); // Attaching Lodash debounce to avoid frequent ajax requests
-
-    _this.getPosts = _.debounce(_this.getPosts, 500);
-    return _this;
+    return _super.apply(this, arguments);
   }
 
   _createClass(ReactSearch, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      // get width of search input for react search widget on initial load
-      var width = document.getElementById("search").offsetWidth;
-      this.setState(function () {
-        return {
-          width: width
-        };
-      }); // get width of search input for react search widget when page resize
-
-      window.addEventListener('resize', function (e) {
-        var newWidth = document.getElementById('search').offsetWidth;
-
-        _this2.setState(function () {
-          return {
-            width: newWidth
-          };
-        });
-      }); // To clear react search widget when click on body
-
-      document.body.addEventListener('click', function (e) {
-        _this2.clearData(e);
-      });
-      document.getElementById('search').addEventListener('keydown', function (e) {
-        // check whether up or down arrow keys are pressed
-        if (e.keyCode === 38 || e.keyCode === 40) {
-          // To prevent cursor from moving left or right in text input
-          // You can only prevent it in keydown event
-          // If you only use keyup then event already fired
-          e.preventDefault();
-        }
-      });
-    }
-  }, {
-    key: "handleSearch",
-    value: function handleSearch(e) {
-      // check whether arrow keys are pressed using Loadash
-      if (_.includes([37, 38, 39, 40, 13], e.keyCode)) {
-        if (e.keyCode === 38 || e.keyCode === 40) {
-          // To prevent cursor from moving left or right in text input
-          e.preventDefault();
-        }
-
-        if (e.keyCode === 40 && this.state.posts == "") {
-          // If post list is cleared and search input is not empty 
-          // then call ajax again on down arrow key press 
-          this.getPosts();
-          return;
-        }
-
-        this.selectPost(e.keyCode);
-      } else {
-        this.getPosts();
-      }
-    }
-  }, {
-    key: "getPosts",
-    value: function getPosts() {
-      var _this3 = this;
-
-      this.setState(function () {
-        return {
-          posts: [],
-          count: 0,
-          search: _this3.refs.newSearch.value
-        };
-      });
-
-      if (this.state.search.trim() != '') {
-        axios.post("/demos/reactsearch", {
-          search: this.state.search
-        }).then(function (response) {
-          _this3.setState(function () {
-            return {
-              posts: response.data
-            };
-          });
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
-    }
-  }, {
-    key: "selectPost",
-    value: function selectPost(keyCode) {
-      // If down arrow key is pressed
-      if (keyCode == 40 && this.state.count < this.state.posts.length) {
-        this.setState(function (prevState) {
-          return {
-            count: prevState.count + 1
-          };
-        });
-      } // If up arrow key is pressed
-
-
-      if (keyCode == 38 && this.state.count > 1) {
-        this.setState(function (prevState) {
-          return {
-            count: prevState.count - 1
-          };
-        });
-      } // If enter key is pressed
-
-
-      if (keyCode == 13) {
-        // Go to selected post
-        document.getElementById(this.state.count).childNodes[0].click();
-      }
-    }
-  }, {
-    key: "clearData",
-    value: function clearData(e) {
-      if (e.target.id != 'search') {
-        this.setState(function () {
-          return {
-            posts: [],
-            count: 0
-          };
-        });
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
-
-      var ulStyle = {
-        width: this.state.width + 'px'
-      };
-      var posts = this.state.posts.map(function (post, index) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_List__WEBPACK_IMPORTED_MODULE_2__.default, {
-          post: post,
-          index: index + 1,
-          count: _this4.state.count
-        }, index);
-      });
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "well",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "row",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "col-sm-2",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              className: "input-group-addon span-style",
-              children: "BLOG SEARCH"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "col-sm-10",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "col-sm-4 offset-sm-7",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "text",
               autoComplete: "off",
-              onKeyUp: this.handleSearch,
               id: "search",
               ref: "newSearch",
               className: "form-control input-lg",
-              placeholder: "Enter Blog Title Here"
-            }), this.state.posts.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
-              style: ulStyle,
-              className: "widget",
-              children: posts
-            })]
+              placeholder: "Enter Name, Email, Book Name Here"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "col-sm-1",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              className: "btn btn-secondary",
+              children: "Search"
+            })
           })]
         })
       });

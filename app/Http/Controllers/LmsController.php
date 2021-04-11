@@ -27,33 +27,4 @@ class LmsController extends Controller
             return ['status' => 0, 'msg' => $ex];
         }
     }
-
-    /**
-     * To  get post details for react pagination
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function getReactPagination(Request $request) 
-    // {    
-
-    //     $posts = Post::where('published',1)
-    //                  ->with('tags')
-    //                  ->orderBy('created_at', 'DESC')
-    //                  ->paginate(5);
-
-    //     foreach ($posts as $key => $post) {
-    //         $post->image = Helper::catch_first_image($post->body);
-    //         $post->url = url('blog/'.$post->slug);
-    //         $post->body = strip_tags(str_limit($post->body,350));
-    //     }   
-
-    //     return [
-    //         'status' => "success",
-    //         'data' => [
-    //             'posts' => $posts
-    //         ]
-    //     ];   
-     
-    // }
 }

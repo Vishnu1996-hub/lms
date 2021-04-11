@@ -20,6 +20,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/index',[LmsController::class,'index']);
-
-// Route::get('demos/react-pagination','DemoController@viewReactPagination');
-// Route::post('demos/react-pagination','DemoController@getReactPagination');

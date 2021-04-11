@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Author;
-use App\Models\Badge;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -26,8 +25,7 @@ class AuthorFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'bio' => $this->faker->text(rand(10, 50)),
-            'badge_id' => $this->faker->randomElement(Badge::pluck('id','id')->toArray())
+            'bio' => $this->faker->text(rand(10, 50))
         ];
     }
 }

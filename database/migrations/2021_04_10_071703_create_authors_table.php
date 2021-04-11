@@ -18,7 +18,6 @@ class CreateAuthorsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->text('bio')->nullable();
-            $table->unsignedInteger('badge_id')->nullable($value = false);
             $table->timestamps();
         });
     }

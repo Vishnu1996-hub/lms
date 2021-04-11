@@ -9,15 +9,15 @@ class Author extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','email','bio','badge_id'];
+    protected $fillable = ['name','email','bio'];
 
     public $timestamps = true;
 
     public function books(){
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Book::class)->orderBy('avg_rating','desc');
     }
 
     public function badge(){
-        return $this->belongsTo(Badge::class);
+        return $this->hasMany(Badge::class);
     }
 }

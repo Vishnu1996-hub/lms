@@ -1,12 +1,14 @@
+// resources/assets/js/components/Header.js
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Header = () => (
-    <nav className='navbar navbar-expand-md navbar-light navbar-laravel'>
+  <nav className='navbar navbar-expand-md navbar-light navbar-laravel'>
     <div className='container'>
-        <Link className='navbar-brand' to='/'>LMS Book Listing</Link>
+      <Link className='navbar-brand' to='/'>LIBRARY MANAGEMENT SYSTEM</Link>
     </div>
-    </nav>
+  </nav>
 )
 
 export default Header

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>LMS</title>
 
         <!-- CSS -->
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
@@ -14,9 +14,6 @@
     <body>
         <!-- React root DOM -->
         <div id="app">
-        </div>
-
-        <div id="user">
         </div>
 
         <!-- React JS -->

@@ -9,11 +9,11 @@ class Badge extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['label','desc'];
+    protected $fillable = ['label','desc','author_id'];
 
     public $timestamps = true;
 
     public function authors(){
-        return $this->hasMany(Author::class);
+        return $this->belongsTo(Author::class);
     }
 }

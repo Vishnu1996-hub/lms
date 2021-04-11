@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from './Header';
-import BookList from './BookList'
+// resources/assets/js/components/App.js
 
-class App extends Component() {
-    render () {
-        return (
-            <BrowserRouter>
-                <div>
-                    <Header />
-                    <Switch>
-                        <Route exact path='/' component={BookList} />
-                    </Switch>
-                </div>
-            </BrowserRouter>
-        )
-    }
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Header from './Header'
+import Index from './Index'
+
+class App extends Component {
+  render () {
+    return (
+      <BrowserRouter>
+        <div>
+          <Header />
+          <Index />
+        </div>
+      </BrowserRouter>
+    )
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'))

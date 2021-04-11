@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import List from './List';
-import '../../sass/components/react-search.scss';
 
 export default class ReactSearch extends React.Component {
   constructor(props) {

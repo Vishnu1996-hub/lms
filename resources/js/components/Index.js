@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap';
+import ReactSearch from './ReactSearch';
 
 class Index extends Component {
     constructor () {
@@ -23,8 +24,8 @@ class Index extends Component {
     const { authors } = this.state
     return (
         <div className='container py-4'>
-            
-        <div className='row justify-content-center'>
+        <ReactSearch />
+        <div className='row justify-content-center mt-5'>
             <div className='col-md-12'>
             <div className='card'>
                 <div className='card-header'>All Author's Record</div>

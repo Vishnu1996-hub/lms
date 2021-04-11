@@ -26,7 +26,7 @@ class Index extends Component {
         <div className='row justify-content-center'>
             <div className='col-md-12'>
             <div className='card'>
-                <div className='card-header'>All Authors</div>
+                <div className='card-header'>All Author's Record</div>
                 <div className='card-body'>
                     <Table striped bordered>
                         <thead>
